@@ -2,6 +2,9 @@ package com.vincent.springhibernate.configuration;
 
 import java.util.Properties;
 
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +24,28 @@ public class MailConfig {
 
 	@Autowired
 	private Environment environment;
-
+	
 	@Bean
 	public JavaMailSender javaMailService() {
+		final String username = (String)environment.getProperty("username");
+		final String password = (String)environment.getProperty("password");
+		//final String username = "vincentcheng787@gmail.com";
+		//final String password = "Stardust8";
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 		javaMailSender.setHost(environment.getProperty("host"));
 		javaMailSender.setPort(Integer.valueOf(environment.getProperty("port")));
-		javaMailSender.setUsername(environment.getProperty("username"));
-		javaMailSender.setPassword(environment.getProperty("password"));
-		javaMailSender.setJavaMailProperties(getMailProperties());
+		javaMailSender.setUsername(username);
+		javaMailSender.setPassword(password);
+		Properties prop = getMailProperties();
+	    Session session = Session.getDefaultInstance(prop,
+	            new javax.mail.Authenticator() {
+	                protected PasswordAuthentication getPasswordAuthentication() {
+	                    return new PasswordAuthentication(username,password);
+	                }
+	            });
+	    javaMailSender.setSession(session);
+		javaMailSender.setJavaMailProperties(prop);
+
 		return javaMailSender;
 	}
 
@@ -39,6 +55,7 @@ public class MailConfig {
 		properties.setProperty("mail.smtp.auth", "true");
 		properties.setProperty("mail.smtp.starttls.enable", "true");
 		properties.setProperty("mail.debug", "true");
+
 		return properties;
 	}
 
