@@ -29,8 +29,8 @@ public class MailConfig {
 	public JavaMailSender javaMailService() {
 		final String username = (String)environment.getProperty("username");
 		final String password = (String)environment.getProperty("password");
-		//final String username = "vincentcheng787@gmail.com";
-		//final String password = "Stardust8";
+		//final String username = "xxxxxxx@gmail.com";
+		//final String password = "xxxxxxx";
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 		javaMailSender.setHost(environment.getProperty("host"));
 		javaMailSender.setPort(Integer.valueOf(environment.getProperty("port")));
