@@ -5,20 +5,17 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
+import com.vincent.springhibernate.dao.MailDAO;
+
 @Service("mailService")
 public class MailServiceImpl implements MailService {
 
 	@Autowired
-	private MailSender mailSender;
+	MailDAO mailDAO;
+	
 	@Override
-	public void sendEmail(String toAddress, String fromAddress, String subject, String msgBody) {
-		SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setFrom(fromAddress);
-		msg.setTo(toAddress);
-		msg.setSubject(subject);
-		msg.setText(msgBody);
-		mailSender.send(msg);
-		
+	public void sendEmail(String msgBody) {
+		mailDAO.sendEmail(msgBody);
 	}
 
 }

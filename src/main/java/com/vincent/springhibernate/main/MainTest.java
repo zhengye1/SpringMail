@@ -17,6 +17,6 @@ public class MainTest {
 		 ctx.refresh();
 		 
 		 MailService mail = (MailService)ctx.getBean(MailServiceImpl.class);
-		 mail.sendEmail("ye.zheng@mail.utoronto.ca", "vincentcheng787@gmail.com", "SpringMail", "Hello from Spring Mail project");
+		 mail.sendEmail("Hello from Spring Mail project");
 	}
 }

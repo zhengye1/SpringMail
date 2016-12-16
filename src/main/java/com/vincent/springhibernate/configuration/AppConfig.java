@@ -19,9 +19,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-//@EnableWebMvc
-@ComponentScan(basePackages = {"com.vincent.springhibernate"}, excludeFilters = {
-@Filter(type=FilterType.ANNOTATION, value = Configuration.class)})
+@EnableWebMvc
+@ComponentScan(basePackages = {"com.vincent.springhibernate"})
 public class AppConfig extends WebMvcConfigurerAdapter {
 	
 	static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
@@ -49,10 +48,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //		
 //	}
 	
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//    	registry.addResourceHandler("/static/**").addResourceLocations("/static/");
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    	registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+    }
 
 //	/**
 //	 * Handler uploadResolver
