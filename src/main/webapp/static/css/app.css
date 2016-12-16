@@ -1,0 +1,12 @@
+.has-error{
+	color:red;
+}
+
+.wrapper{
+	margin-top: 30px;
+	margin-left: 60px;
+}
+
+p{
+	font-family: Verdana, Geneva, Lucida, Helvetica, Arial, sans-serif;
+}

@@ -33,7 +33,11 @@ public class AppController {
 		if (result.hasErrors()){
 			return "feedback";
 		}
-		mailService.sendEmail(mail.getFeedback());
+		String feedback ="";
+		feedback += (!mail.getName().equals("")) ? "Student name: " + mail.getName() + "\n" : feedback;
+		feedback += (!mail.getEmail().equals("")) ? "Student email: " + mail.getEmail() + "\n" : feedback;
+		feedback += mail.getFeedback();
+		mailService.sendEmail(feedback);
 		model.addAttribute("success", "Your feedback is send successfully");
 		return "submitSuccess";
 	}

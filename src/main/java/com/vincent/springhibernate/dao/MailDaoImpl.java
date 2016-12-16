@@ -3,6 +3,7 @@ package com.vincent.springhibernate.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 @Repository("mailDAO")
@@ -16,6 +17,7 @@ public class MailDaoImpl implements MailDAO {
 	private MailSender mailSender;
 
 	@Override
+	@Async
 	public void sendEmail(String msgBody){
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom(fromAddress);
