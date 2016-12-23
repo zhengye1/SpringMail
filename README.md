@@ -1,0 +1,1 @@
+A Spring project that send anonymous email
