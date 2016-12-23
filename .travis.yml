@@ -10,5 +10,9 @@ cache:
 script:
   - mvn clean test
   
+
+env:
+	global:
+	- CODECOV_TOKEN=:e151ca70-8015-43f1-8886-b7291b6b7388
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t token
